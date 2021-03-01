@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/number_licence_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" >
+
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/number_licence_plate_ru"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/wizard_toolbar"
+            app:titleMarginEnd="50dp"
+            style="@style/Toolbar" >
+
+            <TextView
+                android:id="@+id/wizard_toolbar_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="10dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <EditText
+        android:id="@+id/edit_text_text_person_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="40sp"
+        android:ems="10"
+        android:inputType="text"
+        android:layout_gravity="center"
+        android:hint="A000AA 77" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/wizard_skip_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Пропустить"
+            android:textColor="@color/black_alpha_4"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" />
+
+        <Button
+            android:id="@+id/wizard_next_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Далее"
+            android:backgroundTint="@color/orange"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

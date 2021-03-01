@@ -1,0 +1,6 @@
+<resources>
+    <string name="pay_penalties_with_50_discount">Оплачивайте штрафы со скидкой 50%</string>
+    <string name="get_notified_of_new_fines">Получайте уведомления о новых штрафах</string>
+    <string name="repayment_guarantee_receipt_as_in_the_bank">Гарантия погашения, квитанция как в банке</string>
+    <string name="obey_traffic_rules">Соблюдайте правила дорожного движения</string>
+</resources>
