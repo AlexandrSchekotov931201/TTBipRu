@@ -1,4 +1,4 @@
-package ru.schekotov.ttbipru.presentation
+package ru.schekotov.ttbipru.presentation.activity
 
 import android.content.Context
 import android.content.Intent

@@ -1,12 +1,12 @@
-package ru.schekotov.ttbipru.data
+package ru.schekotov.ttbipru.data.db
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import ru.schekotov.ttbipru.data.entity.SQL_CREATE_RATING_CSI_TABLE
-import ru.schekotov.ttbipru.data.entity.SQL_DROP_RATING_CSI_TABLE
+import ru.schekotov.ttbipru.data.db.entity.SQL_CREATE_VEHICLE_TABLE
+import ru.schekotov.ttbipru.data.db.entity.SQL_DROP__VEHICLE_TABLE
 
-class DBHelper(context: Context, val dbName: String = "TTBip.ru.db", val version: Int = 1) :
+class DBHelper(context: Context, dbName: String = "TTBip.ru.db", version: Int = 1) :
     SQLiteOpenHelper(context, dbName, null, version) {
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -23,15 +23,11 @@ class DBHelper(context: Context, val dbName: String = "TTBip.ru.db", val version
         createEmptyTables(db)
     }
 
-    fun asd() : String {
-        return "Все получилось!"
-    }
-
     private fun createEmptyTables(db: SQLiteDatabase) {
-        db.execSQL(SQL_CREATE_RATING_CSI_TABLE)
+        db.execSQL(SQL_CREATE_VEHICLE_TABLE)
     }
 
     private fun dropMessengerTables(db: SQLiteDatabase) {
-        db.execSQL(SQL_DROP_RATING_CSI_TABLE)
+        db.execSQL(SQL_DROP__VEHICLE_TABLE)
     }
 }
