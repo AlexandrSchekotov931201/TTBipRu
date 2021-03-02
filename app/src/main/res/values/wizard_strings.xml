@@ -4,6 +4,7 @@
     <string name="drivers_license_number_title">Введите номер водительского удостоверения</string>
     <string name="skip_button_title">Пропустить</string>
     <string name="wizard_next_button_title">Далее</string>
+    <string name="edit_text_hint">Введите номер</string>
 
     <string name="skip_alert_text">Вы уверенны что хотите пропустить этот шаг?</string>
     <string name="skip_alert_positive_button_title">ДА</string>

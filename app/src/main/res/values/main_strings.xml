@@ -1,7 +1,8 @@
 <resources>
     <string name="welcome_to_app">Добро пожаловать в приложение!</string>
-    <string name="vehicle_number_is_not_filled">Номер ТС не заполнен</string>
-    <string name="registration_certification_number_is_not_filled">Номер СТС не заполнен</string>
-    <string name="drivers_license_number_is_not_filled">Номер ВУ не заполнен</string>
+    <string name="vehicle_number_is_not_filled">Номер ТС:</string>
+    <string name="registration_certification_number_is_not_filled">Номер СТС:</string>
+    <string name="drivers_license_number_is_not_filled">Номер ВУ:</string>
+    <string name="empty_filled">Номер не заполнен</string>
     <string name="section_is_currently_under_construction">Данный раздел сейчас в разработке!</string>
 </resources>

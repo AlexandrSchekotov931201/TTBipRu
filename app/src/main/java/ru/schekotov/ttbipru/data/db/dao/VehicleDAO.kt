@@ -13,6 +13,8 @@ import ru.schekotov.ttbipru.data.db.entity.VehicleEntry.VEHICLE_TABLE_NAME
 
 class VehicleDAO(dbHelper: DBHelper) : BaseDAO(dbHelper) {
 
+
+    /** Добавить информацию по транспортному средству */
     @Synchronized
     fun insertVehicle(vehicle: VehicleModel) {
         val contentValues: ContentValues
@@ -32,6 +34,7 @@ class VehicleDAO(dbHelper: DBHelper) : BaseDAO(dbHelper) {
         }
     }
 
+    /** Получить информацию по транспортному средству */
     @Synchronized
     fun getVehicle(): VehicleModel {
         var db: SQLiteDatabase? = null

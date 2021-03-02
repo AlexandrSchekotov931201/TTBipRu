@@ -23,11 +23,11 @@ class DBHelper(context: Context, dbName: String = "TTBip.ru.db", version: Int = 
         createEmptyTables(db)
     }
 
-    private fun createEmptyTables(db: SQLiteDatabase) {
+    fun createEmptyTables(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_VEHICLE_TABLE)
     }
 
-    private fun dropMessengerTables(db: SQLiteDatabase) {
+    fun dropMessengerTables(db: SQLiteDatabase) {
         db.execSQL(SQL_DROP__VEHICLE_TABLE)
     }
 }

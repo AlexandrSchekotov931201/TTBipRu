@@ -99,10 +99,7 @@ class WalkThroughActivity : AppCompatActivity() {
             dots[index]?.apply {
                 text = "•"
                 textSize = 45F
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                    setTextColor(resources.getColor(R.color.black_alpha_4, context.theme))
-                else
-                    setTextColor(resources.getColor(R.color.black_alpha_4))
+                setTextColor(resources.getColor(R.color.black_alpha_4))
             }
             linearLayoutDots.addView(dots[index])
         }
