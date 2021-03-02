@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import ru.schekotov.ttbipru.App
 import ru.schekotov.ttbipru.R
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst.IS_VISIBLE_WIZARD_SCREEN_KEY
-import ru.schekotov.ttbipru.data.model.VehicleModel
 import ru.schekotov.ttbipru.domain.IVehicleInteractor
 import ru.schekotov.ttbipru.enums.WizardStateScreen
 import ru.schekotov.ttbipru.presentation.ViewModelProviderFactory
@@ -29,14 +29,9 @@ class WizardActivity : AppCompatActivity() {
     private lateinit var wizardNextButton: Button
     private lateinit var wizardSkipButton: Button
 
-    private lateinit var currentWizardStateScreen: WizardStateScreen
-    private lateinit var nextWizardStateScreen: WizardStateScreen
-
     private lateinit var wizardViewModel: WizardViewModel
 
     private lateinit var editText: EditText
-
-    private lateinit var vehicleMap: HashMap<WizardStateScreen, String>
 
     @Inject
     lateinit var vehicleInteractor: IVehicleInteractor
@@ -48,14 +43,12 @@ class WizardActivity : AppCompatActivity() {
         initViewModel()
         initView()
         initListener()
+        registerObservers()
     }
 
     override fun onStart() {
         super.onStart()
-        currentWizardStateScreen = intent.getSerializableExtra(WIZARD_STATE) as WizardStateScreen
-        nextWizardStateScreen = getNextWizardStateScreen()
-        vehicleMap = intent.getSerializableExtra(WIZARD_VEHICLE_MAP) as HashMap<WizardStateScreen, String>
-        titleToolbar.text = getString(currentWizardStateScreen.state.title)
+        titleToolbar.text = getString(wizardViewModel.getCurrentWizardStateScreen().state.title)
     }
 
     /** Инициализация ViewModel */
@@ -63,7 +56,11 @@ class WizardActivity : AppCompatActivity() {
         wizardViewModel = ViewModelProvider(
             viewModelStore,
             ViewModelProviderFactory(
-                WizardViewModel(vehicleInteractor)
+                WizardViewModel(
+                    vehicleInteractor,
+                    intent.getSerializableExtra(WIZARD_STATE) as WizardStateScreen,
+                    intent.getSerializableExtra(WIZARD_VEHICLE_MAP) as HashMap<WizardStateScreen, String>
+                )
             )
         ).get(WizardViewModel::class.java)
     }
@@ -78,65 +75,44 @@ class WizardActivity : AppCompatActivity() {
     }
 
     /** Инициализация Listener */
-    //TODO Оптимизировать код в слушателях кнопок (Избавиться от дублирования кода)
     private fun initListener() {
         wizardNextButton.setOnClickListener {
-            vehicleMap[currentWizardStateScreen] = editText.text.toString()
-            if (currentWizardStateScreen == WizardStateScreen.DRIVERS_LICENSE_NUMBER) {
-                getSharedPreferences(SharedPreferencesConst.APP_PREFERENCES, Context.MODE_PRIVATE).edit()
-                    .putBoolean(IS_VISIBLE_WIZARD_SCREEN_KEY, true)
-                    .apply()
-                wizardViewModel.insertData(getVehicleModel())
-                startActivity(WalkThroughActivity.newIntent(this))
-                ActivityCompat.finishAffinity(this)
-            } else {
-                startActivity(newIntent(this, nextWizardStateScreen, vehicleMap))
-            }
+            wizardViewModel.onWizardNext()
         }
         wizardSkipButton.setOnClickListener {
-            showAlertWithTwoButton()
-        }
-    }
-
-    //TODO Вынести в отдельный класс работы с алертами
-    private fun showAlertWithTwoButton() {
-        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
-        alertDialog.setMessage("Вы уверенны что хотите пропустить этот шаг?")
-        alertDialog.setPositiveButton("ДА") { _, _ ->
-            if (currentWizardStateScreen == WizardStateScreen.DRIVERS_LICENSE_NUMBER) {
-                getSharedPreferences(SharedPreferencesConst.APP_PREFERENCES, Context.MODE_PRIVATE).edit()
-                    .putBoolean(IS_VISIBLE_WIZARD_SCREEN_KEY, true)
-                    .apply()
-                startActivity(WalkThroughActivity.newIntent(this))
-                ActivityCompat.finishAffinity(this)
-            } else {
-                startActivity(newIntent(this, nextWizardStateScreen))
+            AlertDialog.Builder(this).apply {
+                setMessage(getString(R.string.skip_alert_text))
+                setPositiveButton(getString(R.string.skip_alert_positive_button_title)) { _, _ ->
+                    wizardViewModel.onWizardNext()
+                }
+                setNegativeButton(getString(R.string.skip_alert_negative_button_title)) { dialog, _ -> dialog.cancel() }
+                show()
             }
         }
-        alertDialog.setNegativeButton("НЕТ") { dialog, _ -> dialog.cancel() }
-        alertDialog.show()
     }
 
-    private fun getNextWizardStateScreen(): WizardStateScreen {
-        val wizardStateScreens = WizardStateScreen.values()
-        for (index in wizardStateScreens.indices) {
-            if (currentWizardStateScreen == wizardStateScreens[index] && index < wizardStateScreens.size - 1) {
-                return wizardStateScreens[index + 1]
-            }
+    /**
+     * Действие по переходу на следующий экран визарда
+     *
+     * @param currentWizardStateScreen текущее состояние отображения экрана визарда
+     */
+    private fun wizardNext(currentWizardStateScreen: WizardStateScreen) {
+        wizardViewModel.getVehicleMap()[currentWizardStateScreen] = editText.text.toString()
+        if (currentWizardStateScreen == WizardStateScreen.DRIVERS_LICENSE_NUMBER) {
+            getSharedPreferences(SharedPreferencesConst.APP_PREFERENCES, Context.MODE_PRIVATE).edit()
+                .putBoolean(IS_VISIBLE_WIZARD_SCREEN_KEY, true)
+                .apply()
+            wizardViewModel.insertData(wizardViewModel.getVehicleModel())
+            startActivity(WalkThroughActivity.newIntent(this))
+            ActivityCompat.finishAffinity(this)
+        } else {
+            startActivity(newIntent(this, wizardViewModel.getNextWizardStateScreen(), wizardViewModel.getVehicleMap()))
         }
-        return WizardStateScreen.VEHICLE_NUMBER
     }
 
-    private fun getVehicleModel() : VehicleModel{
-        val vehicleNumber = vehicleMap[WizardStateScreen.VEHICLE_NUMBER]
-        val vehicleRegistrationCertificate = vehicleMap[WizardStateScreen.REGISTRATION_CERTIFICATE_NUMBER]
-        val driversLicenseNumber = vehicleMap[WizardStateScreen.DRIVERS_LICENSE_NUMBER]
-        if (vehicleNumber != null
-            && vehicleRegistrationCertificate != null
-            && driversLicenseNumber != null) {
-            return VehicleModel(vehicleNumber, vehicleRegistrationCertificate, driversLicenseNumber)
-        }
-        return VehicleModel()
+    /** регистрация подписчиков */
+    private fun registerObservers() {
+        wizardViewModel.getWizardStateScreenLiveDate().observe(this, this::wizardNext)
     }
 
     companion object {
@@ -144,6 +120,7 @@ class WizardActivity : AppCompatActivity() {
         private const val WIZARD_STATE = "WIZARD_STATE"
         private const val WIZARD_VEHICLE_MAP = "WIZARD_VEHICLE_MAP"
 
+        /** создание интента активити с необходимыми параметрами */
         fun newIntent(
             context: Context,
             wizardStateScreen: WizardStateScreen,

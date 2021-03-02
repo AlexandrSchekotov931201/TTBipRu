@@ -2,4 +2,8 @@
     <string name="vehicle_number_title">Укажите регистрационный номер ТС</string>
     <string name="registration_certificate_number_title">Введите номер свидетельства о регистрации ТС</string>
     <string name="drivers_license_number_title">Введите номер водительского удостоверения</string>
+
+    <string name="skip_alert_text">Вы уверенны что хотите пропустить этот шаг?</string>
+    <string name="skip_alert_positive_button_title">ДА</string>
+    <string name="skip_alert_negative_button_title">НЕТ</string>
 </resources>
