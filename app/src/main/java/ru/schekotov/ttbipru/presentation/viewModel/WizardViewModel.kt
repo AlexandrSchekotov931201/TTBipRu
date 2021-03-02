@@ -23,10 +23,21 @@ class WizardViewModel(
 
     private val nextWizardStateScreen: WizardStateScreen = getNextWizardStateScreenFromCurrent()
     private val wizardStateScreenLiveDate: MutableLiveData<WizardStateScreen> = MutableLiveData()
+    private val errorFieldLiveDate: MutableLiveData<Boolean> = MutableLiveData()
 
     /** Произошло событие перехода на следующий экран визарда */
     fun onWizardNext() {
         wizardStateScreenLiveDate.value = currentWizardStateScreen
+    }
+
+    /** Произошло событие положительного заполнения поля ввода визарда */
+    fun onGoodField() {
+        errorFieldLiveDate.value = false
+    }
+
+    /** Произошло событие ошибки заполнения поля ввода визарда */
+    fun onErrorField() {
+        errorFieldLiveDate.value = true
     }
 
     /** добавить данный по ТС, ВУ и СТС*/
@@ -52,19 +63,25 @@ class WizardViewModel(
     /** Получить модель данных с ТС, ВУ и СТС*/
     fun getVehicleModel() : VehicleModel{
         val vehicleNumber = vehicleMap[WizardStateScreen.VEHICLE_NUMBER]
+        val vehicleModel = VehicleModel()
         val vehicleRegistrationCertificate = vehicleMap[WizardStateScreen.REGISTRATION_CERTIFICATE_NUMBER]
         val driversLicenseNumber = vehicleMap[WizardStateScreen.DRIVERS_LICENSE_NUMBER]
-        if (vehicleNumber != null
-            && vehicleRegistrationCertificate != null
-            && driversLicenseNumber != null) {
-            return VehicleModel(vehicleNumber, vehicleRegistrationCertificate, driversLicenseNumber)
-        }
-        return VehicleModel()
+
+        if (vehicleNumber != null) vehicleModel.vehicleNumber = vehicleNumber
+        if (vehicleRegistrationCertificate != null) vehicleModel.vehicleRegistrationCertificate = vehicleRegistrationCertificate
+        if (driversLicenseNumber != null) vehicleModel.driversLicenseNumber = driversLicenseNumber
+
+        return vehicleModel
     }
 
     /** Получить LiveData состояния экрана визарда */
     fun getWizardStateScreenLiveDate(): LiveData<WizardStateScreen> {
         return wizardStateScreenLiveDate
+    }
+
+    /** Получить LiveData состояния ошибки поля ввода визарда */
+    fun getErrorFieldLiveDateLiveDate(): LiveData<Boolean> {
+        return errorFieldLiveDate
     }
 
     /** Получить следующее состояния экрана визарда из текущего */

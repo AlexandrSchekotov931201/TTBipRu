@@ -2,10 +2,15 @@ package ru.schekotov.ttbipru.presentation.activity
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -31,6 +36,7 @@ class WizardActivity : AppCompatActivity() {
 
     private lateinit var toolBar: Toolbar
     private lateinit var titleToolbar: TextView
+    private lateinit var errorTextFilling: TextView
     private lateinit var wizardNextButton: Button
     private lateinit var wizardSkipButton: Button
 
@@ -73,6 +79,7 @@ class WizardActivity : AppCompatActivity() {
     private fun initView() {
         toolBar = findViewById(R.id.toolbar_wizard)
         titleToolbar = findViewById(R.id.text_view_wizard_toolbar_title)
+        errorTextFilling = findViewById(R.id.text_view_error_filling_edit_text)
         editText = findViewById(R.id.edit_text_text_person_name)
         wizardNextButton = findViewById(R.id.button_wizard_next)
         wizardSkipButton = findViewById(R.id.button_wizard_skip)
@@ -81,7 +88,11 @@ class WizardActivity : AppCompatActivity() {
     /** Инициализация Listener */
     private fun initListener() {
         wizardNextButton.setOnClickListener {
-            wizardViewModel.onWizardNext()
+            if (editText.text.toString().isNotEmpty()) {
+                wizardViewModel.onWizardNext()
+            } else {
+                wizardViewModel.onErrorField()
+            }
         }
         wizardSkipButton.setOnClickListener {
             AlertDialog.Builder(this).apply {
@@ -93,6 +104,19 @@ class WizardActivity : AppCompatActivity() {
                 show()
             }
         }
+        editText.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                //Нет необходимости в реализации
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //Нет необходимости в реализации
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                wizardViewModel.onGoodField()
+            }
+        })
     }
 
     /**
@@ -114,9 +138,22 @@ class WizardActivity : AppCompatActivity() {
         }
     }
 
+    /** Обработка ошибки заполения поля ввода визарда */
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun errorFillingInField(isError: Boolean) {
+        if (isError) {
+            editText.backgroundTintList = getColorStateList(R.color.strong_orange)
+            errorTextFilling.visibility = View.VISIBLE
+        } else {
+            editText.backgroundTintList = getColorStateList(R.color.green)
+            errorTextFilling.visibility = View.GONE
+        }
+    }
+
     /** регистрация подписчиков */
     private fun registerObservers() {
         wizardViewModel.getWizardStateScreenLiveDate().observe(this, this::wizardNext)
+        wizardViewModel.getErrorFieldLiveDateLiveDate().observe(this, this::errorFillingInField)
     }
 
     companion object {

@@ -83,15 +83,10 @@ class MainActivity : AppCompatActivity() {
     /** Отобразить данные по ТС, СТС и ВУ на экране */
     private fun displayVehicleData(vehicleModel: VehicleModel) {
         val (vehicleNumber, vehicleRegistrationCertificate, driversLicenseNumber) = vehicleModel
-        if (vehicleNumber.isNotEmpty()) {
-            vehicleNumberTextView.setText(vehicleNumber)
-        }
-        if (vehicleRegistrationCertificate.isNotEmpty()) {
-            vehicleRegistrationCertificateTextView.setText(vehicleRegistrationCertificate)
-        }
-        if (driversLicenseNumber.isNotEmpty()) {
-            driversLicenseNumberTextView.setText(driversLicenseNumber)
-        }
+
+        if (vehicleNumber.isNotEmpty()) vehicleNumberTextView.setText(vehicleNumber)
+        if (vehicleRegistrationCertificate.isNotEmpty()) vehicleRegistrationCertificateTextView.setText(vehicleRegistrationCertificate)
+        if (driversLicenseNumber.isNotEmpty()) driversLicenseNumberTextView.setText(driversLicenseNumber)
     }
 
     /** регистрация подписчиков */

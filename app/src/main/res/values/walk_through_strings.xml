@@ -3,5 +3,5 @@
     <string name="get_notified_of_new_fines">Получайте уведомления о новых штрафах</string>
     <string name="repayment_guarantee_receipt_as_in_the_bank">Гарантия погашения, квитанция как в банке</string>
     <string name="obey_traffic_rules">Соблюдайте правила дорожного движения</string>
-    <string name="next_button_title">Узнать штрафы</string>
+    <string name="walk_through_next_button_title">Узнать штрафы</string>
 </resources>

@@ -61,29 +61,47 @@
         android:id="@+id/edit_text_text_person_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
-        android:textSize="40sp"
-        android:ems="10"
+        android:textSize="35sp"
+        android:textAllCaps="true"
         android:inputType="text"
         android:layout_gravity="center"
         android:hint="A000AA 77" />
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="17dp" >
+
+        <TextView
+            android:id="@+id/text_view_error_filling_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="@string/error_filling_edit_text"
+            android:textColor="@color/strong_orange"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:gravity="right">
 
         <Button
             android:id="@+id/button_wizard_skip"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Пропустить"
+            android:text="@string/skip_button_title"
             android:textColor="@color/black_alpha_4"
             android:background="@android:color/transparent"
             android:layout_marginRight="10dp"
@@ -93,7 +111,7 @@
             android:id="@+id/button_wizard_next"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Далее"
+            android:text="@string/wizard_next_button_title"
             android:backgroundTint="@color/orange"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp" />

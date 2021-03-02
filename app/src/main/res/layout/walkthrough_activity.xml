@@ -34,7 +34,7 @@
             android:id="@+id/button_view_pager_next"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/next_button_title"
+            android:text="@string/walk_through_next_button_title"
             android:backgroundTint="@color/orange"
             android:visibility="gone"/>
 
