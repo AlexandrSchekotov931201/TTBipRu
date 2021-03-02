@@ -53,7 +53,7 @@ class WalkThroughActivity : AppCompatActivity() {
         viewPager = findViewById(R.id.view_pager)
         viewPager.adapter = walkThroughScreenAdapter
         linearLayoutDots = findViewById(R.id.view_pager_dots)
-        nextButton = findViewById(R.id.view_pager_next_button)
+        nextButton = findViewById(R.id.button_view_pager_next)
     }
 
     /** Инициализация Listener */

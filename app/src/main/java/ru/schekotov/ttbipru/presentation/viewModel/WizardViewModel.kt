@@ -62,7 +62,7 @@ class WizardViewModel(
         return VehicleModel()
     }
 
-    /** Получить LiveDate состояния экрана визарда */
+    /** Получить LiveData состояния экрана визарда */
     fun getWizardStateScreenLiveDate(): LiveData<WizardStateScreen> {
         return wizardStateScreenLiveDate
     }

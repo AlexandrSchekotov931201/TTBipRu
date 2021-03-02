@@ -71,11 +71,11 @@ class WizardActivity : AppCompatActivity() {
 
     /** Инициализация View */
     private fun initView() {
-        toolBar = findViewById(R.id.wizard_toolbar)
-        titleToolbar = findViewById(R.id.wizard_toolbar_title)
+        toolBar = findViewById(R.id.toolbar_wizard)
+        titleToolbar = findViewById(R.id.text_view_wizard_toolbar_title)
         editText = findViewById(R.id.edit_text_text_person_name)
-        wizardNextButton = findViewById(R.id.wizard_next_button)
-        wizardSkipButton = findViewById(R.id.wizard_skip_button)
+        wizardNextButton = findViewById(R.id.button_wizard_next)
+        wizardSkipButton = findViewById(R.id.button_wizard_skip)
     }
 
     /** Инициализация Listener */

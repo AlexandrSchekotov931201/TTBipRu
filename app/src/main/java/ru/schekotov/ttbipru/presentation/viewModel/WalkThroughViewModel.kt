@@ -36,12 +36,12 @@ class WalkThroughViewModel(
         showNextButtonLiveDate.value = false
     }
 
-    /** Получить LiveDate отображения кнопки для продолжения */
+    /** Получить LiveData отображения кнопки для продолжения */
     fun getShowNextButtonLiveDate() : LiveData<Boolean> {
         return showNextButtonLiveDate
     }
 
-    /** Получить LiveDate отображения индикатора с точками */
+    /** Получить LiveData отображения индикатора с точками */
     fun getShowDotsIndicatorLiveDate() : LiveData<Int> {
         return showDotsIndicatorLiveDate
     }

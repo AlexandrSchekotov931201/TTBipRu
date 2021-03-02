@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".presentation.activity.MainActivity">
+    android:orientation="vertical" >
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -41,12 +39,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/wizard_toolbar"
+            android:id="@+id/toolbar_wizard"
             app:titleMarginEnd="50dp"
             style="@style/Toolbar" >
 
             <TextView
-                android:id="@+id/wizard_toolbar_title"
+                android:id="@+id/text_view_wizard_toolbar_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -82,7 +80,7 @@
         android:gravity="right">
 
         <Button
-            android:id="@+id/wizard_skip_button"
+            android:id="@+id/button_wizard_skip"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Пропустить"
@@ -92,7 +90,7 @@
             android:layout_marginEnd="10dp" />
 
         <Button
-            android:id="@+id/wizard_next_button"
+            android:id="@+id/button_wizard_next"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Далее"

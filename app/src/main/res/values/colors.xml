@@ -11,4 +11,5 @@
     <color name="black_alpha_4">#66000000</color>
     <color name="black_alpha_1">#19000000</color>
     <color name="orange">#FF9800</color>
+    <color name="strong_orange">#FF5722</color>
 </resources>

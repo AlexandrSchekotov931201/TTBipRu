@@ -31,7 +31,7 @@
             android:gravity="center"/>
 
         <Button
-            android:id="@+id/view_pager_next_button"
+            android:id="@+id/button_view_pager_next"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/next_button_title"

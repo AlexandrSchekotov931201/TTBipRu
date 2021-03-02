@@ -25,7 +25,7 @@ class WalkThroughScreenAdapter(val context: Context) : PagerAdapter() {
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val v = layoutInflater.inflate(R.layout.walkthrough_item, container, false)
-        textViewSlider = v.findViewById(R.id.text_item_slider)
+        textViewSlider = v.findViewById(R.id.text_view_item_slider)
         textViewSlider.text = context.getText(walkThroughContent[position].headerText)
         container.addView(v)
         return v
