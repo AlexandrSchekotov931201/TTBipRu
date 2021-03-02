@@ -14,8 +14,6 @@
         android:text="Оплачивайте штрафы со скиндкой 50%"
         android:textSize="25sp" />
 
-
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"

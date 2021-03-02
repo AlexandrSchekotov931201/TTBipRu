@@ -22,6 +22,11 @@ import ru.schekotov.ttbipru.presentation.ViewModelProviderFactory
 import ru.schekotov.ttbipru.presentation.viewModel.WizardViewModel
 import javax.inject.Inject
 
+/**
+ * Активити визард экранов
+ *
+ * @author Щёкотов Александр
+ */
 class WizardActivity : AppCompatActivity() {
 
     private lateinit var toolBar: Toolbar
@@ -53,8 +58,7 @@ class WizardActivity : AppCompatActivity() {
 
     /** Инициализация ViewModel */
     private fun initViewModel() {
-        wizardViewModel = ViewModelProvider(
-            viewModelStore,
+        wizardViewModel = ViewModelProvider(this,
             ViewModelProviderFactory(
                 WizardViewModel(
                     vehicleInteractor,

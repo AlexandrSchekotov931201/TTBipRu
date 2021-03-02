@@ -15,6 +15,11 @@ import ru.schekotov.ttbipru.domain.IVehicleInteractor
 import ru.schekotov.ttbipru.enums.WizardStateScreen
 import javax.inject.Inject
 
+/**
+ * Активити главного экрана
+ *
+ * @author Щёкотов Александр
+ */
 class MainActivity : AppCompatActivity() {
 
     private var sharedPreferences: SharedPreferences? = null
@@ -71,6 +76,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val TAG = "MainActivity"
 
+        /** создание интента активити с необходимыми параметрами */
         fun newIntent(context: Context) : Intent {
             return Intent(context, MainActivity::class.java)
         }
