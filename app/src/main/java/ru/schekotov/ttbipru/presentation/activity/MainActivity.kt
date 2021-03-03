@@ -45,16 +45,16 @@ class MainActivity : AppCompatActivity() {
         registerObservers()
     }
 
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.onDisplayVehicleData()
+    }
+
     /** Инициализация View */
     private fun initView() {
         vehicleNumberTextView = findViewById(R.id.vehicle_number_text_view)
         vehicleRegistrationCertificateTextView = findViewById(R.id.vehicle_registration_certificate_text_view)
         driversLicenseNumberTextView = findViewById(R.id.drivers_license_number_text_view)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        mainViewModel.onDisplayVehicleData()
     }
 
     /** Инициализация ViewModel */

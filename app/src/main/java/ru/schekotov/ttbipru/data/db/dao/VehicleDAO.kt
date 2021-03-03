@@ -14,7 +14,10 @@ import ru.schekotov.ttbipru.data.db.entity.VehicleEntry.VEHICLE_TABLE_NAME
 class VehicleDAO(dbHelper: DBHelper) : BaseDAO(dbHelper) {
 
 
-    /** Добавить информацию по транспортному средству */
+    /** Добавить информацию по транспортному средству
+     *
+     * @param vehicle модель данных которая хранит в себе информацию о ТС
+     */
     @Synchronized
     fun insertVehicle(vehicle: VehicleModel) {
         val contentValues: ContentValues

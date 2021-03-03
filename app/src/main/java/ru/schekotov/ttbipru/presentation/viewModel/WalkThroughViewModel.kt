@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
  * ViewModel для работы с WalkThrough экранами
  *
  * @property defaultPositionDots дефолтное значение для позиции индикатора (Точки)
+ *
  * @author Щёкотов Александр
  */
 class WalkThroughViewModel(

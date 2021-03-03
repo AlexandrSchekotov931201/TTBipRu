@@ -6,8 +6,21 @@ import android.database.sqlite.SQLiteOpenHelper
 import ru.schekotov.ttbipru.data.db.entity.SQL_CREATE_VEHICLE_TABLE
 import ru.schekotov.ttbipru.data.db.entity.SQL_DROP__VEHICLE_TABLE
 
-class DBHelper(context: Context, dbName: String = "TTBip.ru.db", version: Int = 1) :
-    SQLiteOpenHelper(context, dbName, null, version) {
+/**
+ * Вспомогательный класс для работы с БД
+ *
+ * @author Щёкотов Александр
+ */
+class DBHelper(
+    context: Context,
+    dbName: String = "TTBip.ru.db",
+    version: Int = 1
+) : SQLiteOpenHelper(
+    context,
+    dbName,
+    null,
+    version
+) {
 
     override fun onCreate(db: SQLiteDatabase) {
         createEmptyTables(db)
@@ -23,10 +36,12 @@ class DBHelper(context: Context, dbName: String = "TTBip.ru.db", version: Int = 
         createEmptyTables(db)
     }
 
+    /** создать пустые таблицы в БД */
     fun createEmptyTables(db: SQLiteDatabase) {
         db.execSQL(SQL_CREATE_VEHICLE_TABLE)
     }
 
+    /** удалить таблицы в БД */
     fun dropMessengerTables(db: SQLiteDatabase) {
         db.execSQL(SQL_DROP__VEHICLE_TABLE)
     }
