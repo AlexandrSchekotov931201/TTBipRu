@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -23,8 +25,8 @@ import ru.schekotov.ttbipru.R
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst.IS_VISIBLE_WIZARD_SCREEN_KEY
 import ru.schekotov.ttbipru.domain.IVehicleInteractor
-import ru.schekotov.ttbipru.presentation.enums.WizardStateScreen
 import ru.schekotov.ttbipru.presentation.ViewModelProviderFactory
+import ru.schekotov.ttbipru.presentation.enums.WizardStateScreen
 import ru.schekotov.ttbipru.presentation.viewModel.WizardViewModel
 import javax.inject.Inject
 
@@ -63,6 +65,7 @@ class WizardActivity : AppCompatActivity() {
         super.onStart()
         titleToolbar.text = getString(wizardViewModel.getCurrentWizardStateScreen().state.title)
         imageView.setImageResource(wizardViewModel.getCurrentWizardStateScreen().state.img)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
     }
 
     /** Инициализация ViewModel */

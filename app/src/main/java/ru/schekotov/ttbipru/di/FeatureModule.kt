@@ -4,7 +4,8 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ru.schekotov.ttbipru.data.db.DBHelper
-import ru.schekotov.ttbipru.data.db.dao.VehicleDAO
+import ru.schekotov.ttbipru.data.db.dao.impl.VehicleDAO
+import ru.schekotov.ttbipru.data.db.dao.interfaces.IVehicleDAO
 import ru.schekotov.ttbipru.data.repositorys.IVehicleRepository
 import ru.schekotov.ttbipru.data.repositorys.impl.VehicleRepository
 import ru.schekotov.ttbipru.domain.IVehicleInteractor
@@ -20,12 +21,12 @@ class FeatureModule {
     }
 
     @Provides
-    fun provideVehicleRepository(vehicleDAO: VehicleDAO): IVehicleRepository {
+    fun provideVehicleRepository(vehicleDAO: IVehicleDAO): IVehicleRepository {
         return VehicleRepository(vehicleDAO)
     }
 
     @Provides
-    fun provideVehicleDAO(dbHelper: DBHelper): VehicleDAO {
+    fun provideVehicleDAO(dbHelper: DBHelper): IVehicleDAO {
         return VehicleDAO(dbHelper)
     }
 

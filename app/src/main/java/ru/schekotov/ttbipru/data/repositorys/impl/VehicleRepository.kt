@@ -1,6 +1,6 @@
 package ru.schekotov.ttbipru.data.repositorys.impl
 
-import ru.schekotov.ttbipru.data.db.dao.VehicleDAO
+import ru.schekotov.ttbipru.data.db.dao.interfaces.IVehicleDAO
 import ru.schekotov.ttbipru.data.model.VehicleModel
 import ru.schekotov.ttbipru.data.repositorys.IVehicleRepository
 
@@ -9,7 +9,7 @@ import ru.schekotov.ttbipru.data.repositorys.IVehicleRepository
  *
  * @author Щёкотов Александр
  */
-class VehicleRepository(private val dao: VehicleDAO) : IVehicleRepository {
+class VehicleRepository(private val dao: IVehicleDAO) : IVehicleRepository {
 
     override fun insertVehicle(vehicle: VehicleModel) {
         dao.insertVehicle(vehicle)

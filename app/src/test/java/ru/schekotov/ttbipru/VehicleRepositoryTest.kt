@@ -3,11 +3,10 @@ package ru.schekotov.ttbipru
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import junit.framework.Assert
 import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import ru.schekotov.ttbipru.data.db.dao.VehicleDAO
+import ru.schekotov.ttbipru.data.db.dao.interfaces.IVehicleDAO
 import ru.schekotov.ttbipru.data.model.VehicleModel
 import ru.schekotov.ttbipru.data.repositorys.IVehicleRepository
 import ru.schekotov.ttbipru.data.repositorys.impl.VehicleRepository
@@ -19,7 +18,7 @@ import ru.schekotov.ttbipru.data.repositorys.impl.VehicleRepository
  */
 class VehicleRepositoryTest {
 
-    private var vehicleDAO: VehicleDAO = mockk(relaxed = true)
+    private var vehicleDAO: IVehicleDAO = mockk(relaxed = true)
     private var vehicleRepository: IVehicleRepository = mockk()
     private lateinit var vehicleModel: VehicleModel
 

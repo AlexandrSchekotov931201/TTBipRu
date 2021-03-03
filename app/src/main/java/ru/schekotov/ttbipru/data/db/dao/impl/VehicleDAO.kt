@@ -1,25 +1,27 @@
-package ru.schekotov.ttbipru.data.db.dao
+package ru.schekotov.ttbipru.data.db.dao.impl
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.util.Log
 import ru.schekotov.ttbipru.data.db.DBHelper
+import ru.schekotov.ttbipru.data.db.dao.BaseDAO
+import ru.schekotov.ttbipru.data.db.dao.interfaces.IVehicleDAO
 import ru.schekotov.ttbipru.data.model.VehicleModel
 import ru.schekotov.ttbipru.data.db.entity.VehicleEntry.COLUMN_LICENSE_NUMBER
 import ru.schekotov.ttbipru.data.db.entity.VehicleEntry.COLUMN_REGISTRATION_CERTIFICATE
 import ru.schekotov.ttbipru.data.db.entity.VehicleEntry.COLUMN_VEHICLE_NUMBER
 import ru.schekotov.ttbipru.data.db.entity.VehicleEntry.VEHICLE_TABLE_NAME
 
-class VehicleDAO(dbHelper: DBHelper) : BaseDAO(dbHelper) {
+/**
+ * Объект доступа к данным по транспортному средству в БД
+ *
+ * @author Щёкотов Александр
+ */
+class VehicleDAO(dbHelper: DBHelper) : BaseDAO(dbHelper), IVehicleDAO {
 
-
-    /** Добавить информацию по транспортному средству
-     *
-     * @param vehicle модель данных которая хранит в себе информацию о ТС
-     */
     @Synchronized
-    fun insertVehicle(vehicle: VehicleModel) {
+    override fun insertVehicle(vehicle: VehicleModel) {
         val contentValues: ContentValues
         var db: SQLiteDatabase? = null
         try {
@@ -37,9 +39,8 @@ class VehicleDAO(dbHelper: DBHelper) : BaseDAO(dbHelper) {
         }
     }
 
-    /** Получить информацию по транспортному средству */
     @Synchronized
-    fun getVehicle(): VehicleModel {
+    override fun getVehicle(): VehicleModel {
         var db: SQLiteDatabase? = null
         var vehicle = VehicleModel()
         try {
