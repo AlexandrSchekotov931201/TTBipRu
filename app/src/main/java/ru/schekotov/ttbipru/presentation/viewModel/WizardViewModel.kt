@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.schekotov.ttbipru.data.model.VehicleModel
 import ru.schekotov.ttbipru.domain.IVehicleInteractor
-import ru.schekotov.ttbipru.enums.WizardStateScreen
+import ru.schekotov.ttbipru.presentation.enums.WizardStateScreen
 
 /**
  * ViewModel для работы с экранами визарда

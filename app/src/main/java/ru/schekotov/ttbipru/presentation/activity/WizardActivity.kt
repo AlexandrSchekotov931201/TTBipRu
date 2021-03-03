@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -22,7 +23,7 @@ import ru.schekotov.ttbipru.R
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst.IS_VISIBLE_WIZARD_SCREEN_KEY
 import ru.schekotov.ttbipru.domain.IVehicleInteractor
-import ru.schekotov.ttbipru.enums.WizardStateScreen
+import ru.schekotov.ttbipru.presentation.enums.WizardStateScreen
 import ru.schekotov.ttbipru.presentation.ViewModelProviderFactory
 import ru.schekotov.ttbipru.presentation.viewModel.WizardViewModel
 import javax.inject.Inject
@@ -35,6 +36,7 @@ import javax.inject.Inject
 class WizardActivity : AppCompatActivity() {
 
     private lateinit var toolBar: Toolbar
+    private lateinit var imageView: ImageView
     private lateinit var titleToolbar: TextView
     private lateinit var errorTextFilling: TextView
     private lateinit var wizardNextButton: Button
@@ -60,6 +62,7 @@ class WizardActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         titleToolbar.text = getString(wizardViewModel.getCurrentWizardStateScreen().state.title)
+        imageView.setImageResource(wizardViewModel.getCurrentWizardStateScreen().state.img)
     }
 
     /** Инициализация ViewModel */
@@ -78,6 +81,7 @@ class WizardActivity : AppCompatActivity() {
     /** Инициализация View */
     private fun initView() {
         toolBar = findViewById(R.id.toolbar_wizard)
+        imageView = findViewById(R.id.image_view_wizard)
         titleToolbar = findViewById(R.id.text_view_wizard_toolbar_title)
         errorTextFilling = findViewById(R.id.text_view_error_filling_edit_text)
         editText = findViewById(R.id.edit_text_text_person_name)

@@ -1,32 +1,29 @@
 package ru.schekotov.ttbipru.presentation.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import ru.schekotov.ttbipru.R
-import ru.schekotov.ttbipru.presentation.model.WalkThroughContentModel
+import ru.schekotov.ttbipru.presentation.enums.WalkThroughStateScreen
 
-class WalkThroughScreenAdapter(val context: Context) : PagerAdapter() {
+class WalkThroughScreenAdapter(
+    private var walkThroughContent: Array<WalkThroughStateScreen>
+) : PagerAdapter() {
 
-    private lateinit var layoutInflater: LayoutInflater
     private lateinit var textViewSlider: TextView
-    //TODO вынести создание массива за пределы адаптера
-    private val walkThroughContent: Array<WalkThroughContentModel> = arrayOf(
-        WalkThroughContentModel(R.string.pay_penalties_with_50_discount),
-        WalkThroughContentModel(R.string.get_notified_of_new_fines),
-        WalkThroughContentModel(R.string.repayment_guarantee_receipt_as_in_the_bank),
-        WalkThroughContentModel(R.string.obey_traffic_rules)
-    )
+    private lateinit var imageViewSlider: ImageView
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val v = layoutInflater.inflate(R.layout.walkthrough_item, container, false)
+        val context = container.context
+        val v = LayoutInflater.from(context).inflate(R.layout.walkthrough_item, container, false)
         textViewSlider = v.findViewById(R.id.text_view_item_slider)
-        textViewSlider.text = context.getText(walkThroughContent[position].headerText)
+        imageViewSlider = v.findViewById(R.id.image_view_item_slider)
+        textViewSlider.text = context.getText(walkThroughContent[position].state.headerText)
+        imageViewSlider.setImageResource(walkThroughContent[position].state.img)
         container.addView(v)
         return v
     }

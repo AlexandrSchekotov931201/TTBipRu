@@ -15,6 +15,7 @@ import androidx.lifecycle.observe
 import androidx.viewpager.widget.ViewPager
 import ru.schekotov.ttbipru.R
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst
+import ru.schekotov.ttbipru.presentation.enums.WalkThroughStateScreen
 import ru.schekotov.ttbipru.presentation.adapters.WalkThroughScreenAdapter
 import ru.schekotov.ttbipru.presentation.viewModel.WalkThroughViewModel
 
@@ -36,7 +37,7 @@ class WalkThroughActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.walkthrough_activity)
-        walkThroughScreenAdapter = WalkThroughScreenAdapter(this)
+        walkThroughScreenAdapter = WalkThroughScreenAdapter(WalkThroughStateScreen.values())
         initViewModel()
         initView()
         initListener()

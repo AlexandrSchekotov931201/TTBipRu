@@ -14,7 +14,7 @@ import ru.schekotov.ttbipru.constans.SharedPreferencesConst.IS_VISIBLE_WALK_THRO
 import ru.schekotov.ttbipru.constans.SharedPreferencesConst.IS_VISIBLE_WIZARD_SCREEN_KEY
 import ru.schekotov.ttbipru.data.model.VehicleModel
 import ru.schekotov.ttbipru.domain.IVehicleInteractor
-import ru.schekotov.ttbipru.enums.WizardStateScreen
+import ru.schekotov.ttbipru.presentation.enums.WizardStateScreen
 import ru.schekotov.ttbipru.presentation.ViewModelProviderFactory
 import ru.schekotov.ttbipru.presentation.viewModel.MainViewModel
 import javax.inject.Inject

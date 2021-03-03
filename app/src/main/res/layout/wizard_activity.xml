@@ -20,7 +20,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/number_licence_background"
+                android:background="@drawable/wizard_toolbar_up_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -28,10 +28,10 @@
                 app:layout_constraintTop_toTopOf="parent" >
 
                 <ImageView
+                    android:id="@+id/image_view_wizard"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/number_licence_plate_ru"
-                    android:layout_marginTop="20dp"
+                    android:src="@drawable/vehicle_number"
                     android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
