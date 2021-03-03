@@ -41,9 +41,9 @@ class WizardViewModel(
         errorFieldLiveDate.value = true
     }
 
-    /** добавить данный по ТС, ВУ и СТС*/
-    fun insertData(vehicleModel: VehicleModel) {
-        vehicleInteractor.insertVehicle(vehicleModel)
+    /** Произошло событие добавление данных по ТС, ВУ и СТС*/
+    fun onInsertData() {
+        vehicleInteractor.insertVehicle(getVehicleModel())
     }
 
     /** Получить текущее состояние визарда */
@@ -61,8 +61,18 @@ class WizardViewModel(
         return vehicleMap
     }
 
+    /** Получить LiveData состояния экрана визарда */
+    fun getWizardStateScreenLiveDate(): LiveData<WizardStateScreen> {
+        return wizardStateScreenLiveDate
+    }
+
+    /** Получить LiveData состояния ошибки поля ввода визарда */
+    fun getErrorFieldLiveDateLiveDate(): LiveData<Boolean> {
+        return errorFieldLiveDate
+    }
+
     /** Получить модель данных с ТС, ВУ и СТС*/
-    fun getVehicleModel() : VehicleModel{
+    private fun getVehicleModel() : VehicleModel{
         val vehicleNumber = vehicleMap[WizardStateScreen.VEHICLE_NUMBER]
         val vehicleModel = VehicleModel()
         val vehicleRegistrationCertificate = vehicleMap[WizardStateScreen.REGISTRATION_CERTIFICATE_NUMBER]
@@ -73,16 +83,6 @@ class WizardViewModel(
         if (driversLicenseNumber != null) vehicleModel.driversLicenseNumber = driversLicenseNumber
 
         return vehicleModel
-    }
-
-    /** Получить LiveData состояния экрана визарда */
-    fun getWizardStateScreenLiveDate(): LiveData<WizardStateScreen> {
-        return wizardStateScreenLiveDate
-    }
-
-    /** Получить LiveData состояния ошибки поля ввода визарда */
-    fun getErrorFieldLiveDateLiveDate(): LiveData<Boolean> {
-        return errorFieldLiveDate
     }
 
     /** Получить следующее состояния экрана визарда из текущего */

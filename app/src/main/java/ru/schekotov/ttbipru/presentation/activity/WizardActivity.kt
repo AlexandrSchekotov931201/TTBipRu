@@ -130,11 +130,11 @@ class WizardActivity : AppCompatActivity() {
      */
     private fun wizardNext(currentWizardStateScreen: WizardStateScreen) {
         wizardViewModel.getVehicleMap()[currentWizardStateScreen] = editText.text.toString()
-        if (currentWizardStateScreen == WizardStateScreen.DRIVERS_LICENSE_NUMBER) {
+        if (currentWizardStateScreen == WizardStateScreen.values()[WizardStateScreen.values().size-1]) {
             getSharedPreferences(SharedPreferencesConst.APP_PREFERENCES, Context.MODE_PRIVATE).edit()
                 .putBoolean(IS_VISIBLE_WIZARD_SCREEN_KEY, true)
                 .apply()
-            wizardViewModel.insertData(wizardViewModel.getVehicleModel())
+            wizardViewModel.onInsertData()
             startActivity(WalkThroughActivity.newIntent(this))
             ActivityCompat.finishAffinity(this)
         } else {

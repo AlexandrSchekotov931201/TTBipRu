@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
 /**
- * Модель данных которая хранит в себе информацию о контекте визард экрана
+ * Модель данных которая хранит в себе информацию о контенте визард экрана
  *
  * @author Щёкотов Александр
  */
