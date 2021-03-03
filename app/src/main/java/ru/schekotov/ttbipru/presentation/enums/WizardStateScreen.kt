@@ -9,7 +9,28 @@ import ru.schekotov.ttbipru.presentation.model.WizardContentModel
  * @author Щёкотова Александр
  */
 enum class WizardStateScreen(val state: WizardContentModel) {
-    VEHICLE_NUMBER(WizardContentModel(R.string.vehicle_number_title, R.drawable.vehicle_number)),
-    REGISTRATION_CERTIFICATE_NUMBER(WizardContentModel(R.string.registration_certificate_number_title, R.drawable.registration_certification)),
-    DRIVERS_LICENSE_NUMBER(WizardContentModel(R.string.drivers_license_number_title, R.drawable.drivers_license))
+
+    /** экран ввода регистрационного номера ТС" */
+    VEHICLE_NUMBER(
+        WizardContentModel(
+            R.string.vehicle_number_title,
+            R.drawable.vehicle_number
+        )
+    ),
+
+    /** экран ввода номера свидетельства о регистрации ТС" */
+    REGISTRATION_CERTIFICATE_NUMBER(
+        WizardContentModel(
+            R.string.registration_certificate_number_title,
+            R.drawable.registration_certification
+        )
+    ),
+
+    /** экран ввода номера водительского удостоверения" */
+    DRIVERS_LICENSE_NUMBER(
+        WizardContentModel(
+            R.string.drivers_license_number_title,
+            R.drawable.drivers_license
+        )
+    )
 }

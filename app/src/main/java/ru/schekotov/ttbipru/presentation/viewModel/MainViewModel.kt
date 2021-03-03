@@ -10,6 +10,7 @@ import ru.schekotov.ttbipru.domain.IVehicleInteractor
  * ViewModel для работы с главным экраном
  *
  * @property vehicleInteractor интерактор для работы с данными по ТС
+ *
  * @author Щёкотов Александр
  */
 class MainViewModel(

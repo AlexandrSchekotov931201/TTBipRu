@@ -13,6 +13,7 @@ import ru.schekotov.ttbipru.presentation.enums.WizardStateScreen
  * @property vehicleInteractor интерактор для работы с данными по ТС
  * @property currentWizardStateScreen текущее состояние экрана визарда
  * @property vehicleMap структура данных необходимая для сбора заполненный полей и преоброзования их в модельданных
+ *
  * @author Щёкотов Александр
  */
 class WizardViewModel(
