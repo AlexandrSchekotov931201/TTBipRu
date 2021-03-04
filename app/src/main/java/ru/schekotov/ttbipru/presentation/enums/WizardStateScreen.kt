@@ -6,6 +6,7 @@ import ru.schekotov.ttbipru.presentation.model.WizardContentModel
 /**
  * Перечесление состояний экранов визарда
  *
+ * @property state модель данных которая хранит в себе информацию о контенте визард экрана
  * @author Щёкотова Александр
  */
 enum class WizardStateScreen(val state: WizardContentModel) {

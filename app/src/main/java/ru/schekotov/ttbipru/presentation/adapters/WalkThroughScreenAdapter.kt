@@ -10,6 +10,12 @@ import androidx.viewpager.widget.PagerAdapter
 import ru.schekotov.ttbipru.R
 import ru.schekotov.ttbipru.presentation.enums.WalkThroughStateScreen
 
+/**
+ * Адаптер для viewPager WalkThrough экранов
+ *
+ * @property walkThroughContent массив состояний экранов WalkThrough экранов
+ * @author Щёкотов Александр
+ */
 class WalkThroughScreenAdapter(
     private var walkThroughContent: Array<WalkThroughStateScreen>
 ) : PagerAdapter() {

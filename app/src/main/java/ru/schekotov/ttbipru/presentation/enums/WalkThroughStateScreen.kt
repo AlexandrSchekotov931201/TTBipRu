@@ -6,6 +6,7 @@ import ru.schekotov.ttbipru.presentation.model.WalkThroughContentModel
 /**
  * Перечесление состояний экранов WalkThrough экранов
  *
+ * @property state модель данных которая хранит в себе информацию о контенте WalkThrough экрана
  * @author Щёкотова Александр
  */
 enum class WalkThroughStateScreen(val state: WalkThroughContentModel) {
